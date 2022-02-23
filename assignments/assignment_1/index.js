@@ -12,16 +12,15 @@ function getNameFromEnv() {
 
 function getNameFromReadLine() {
     // Write your code here
-    const readLine = require('readline');
-    const r1 = readLine.createInterface({
-        input: process.stdin,
-        output: process.stdout
-    });
+    const readline = require('readline')
+    const r1 = readline.createInterface({
+        input: stdin,
+        output: stdout
+    })
     r1.question('What is your name?',(ans)=>{
-        console.log(ans);
+        console.log(`hello ${ans}`);
         r1.close();
-    });
-
+    })
 }
 
 module.exports = {
