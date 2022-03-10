@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users form</title>
+</head>
+<body>
+    <table cellpadding="5px" style="background-color: aqua;" border="1px solid">
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Age</th>
+          <th>City</th>
+          <th>Profession</th>
+          <th>Promote</th>
+          <th>Delete</th>
+        </tr>
+          <%users.forEach((user)=>{%> <% if (user.isPromoted === true){%>
+              <tr style="color: brown;">
+                <td><%=user.name%></td>
+                <td><%=user.email%></td>
+                <td><%=user.age%></td>
+                <td><%=user.city%></td>
+                <td><%=user.profession%></td>
+                <td>
+                  <form method="POST" action="/user/<%= user._id %>?_method=PUT">
+                      <button  class="promoted-btn" id="edit-<%= user.name %>" type="submit">Promoted</button>
+                  </form>
+              </td>
+              <td>
+                  <form method="POST" action="/user/<%= user._id %>?_method=DELETE">
+                      <button class="delete-btn" id="delete-<%= user.name %>">Delete</button>
+                  </form>
+              </td>
+              </tr>
+          <%}
+          else{%>
+            <tr class="default">
+              <td><%=user.name%></td>
+              <td><%=user.email%></td>
+              <td><%=user.age%></td>
+              <td><%=user.city%> </td>
+              <td><%=user.profession%></td>
+              <td>
+                  <form method="POST" action="/user/<%= user._id %>?_method=PUT">
+                      <button class="promoted-btn"id="edit-<%= user.name %>" type="submit">Promote</button>
+                  </form>
+              </td>
+              <td>
+                  <form method="POST" action="/user/<%= user._id %>?_method=DELETE">
+                      <button class="delete-btn" id="delete-<%= user.name %>">Delete</button>
+                  </form>
+              </td>
+          </tr>
+      <%}%>
+
+          <%})%>
+      </table>
+      <a href="./form" style="text-decoration: none;" >Click to add new user</a>
+      
+</body>
+</html>
