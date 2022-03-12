@@ -32,6 +32,7 @@ router.put('/posts/:id', async (req,res)=>{
             status:"post updated",
         })
 
+        
     }else{
         res,json({
             status:"user can't update the this post"

@@ -10,6 +10,7 @@ router.get('/',async (req,res)=>{
     res.json({users})
 })
 
+
 router.post('/',body('email').isEmail(),body('name').isAlpha() ,async (req,res)=>{
     try{
         const errors = validationResult(req);
@@ -19,7 +20,6 @@ router.post('/',body('email').isEmail(),body('name').isAlpha() ,async (req,res)=
         const user=await User.create(req.body)
         res.json({status:"success",data:user})
         }
-
     catch(e){
         console.log(e)
         res.status(500).json({status:"fail",message:e.message})

@@ -12,6 +12,8 @@ router.post('/register%0A',body("email"),body("name"),async (req,res)=>{
         if (!errors.isEmpty()) {
           return res.status(400).json({ errors: errors.array() });
         }
+
+        
         const {name,email,password}=req.body
         bcrypt.hash(password, 10,async function(err, hash) {
             
