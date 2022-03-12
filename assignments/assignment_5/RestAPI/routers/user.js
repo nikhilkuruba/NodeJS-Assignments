@@ -10,7 +10,6 @@ router.get('/',async (req,res)=>{
     res.json({users})
 })
 
-
 router.post('/',body('email').isEmail(),body('name').isAlpha() ,async (req,res)=>{
     try{
         const errors = validationResult(req);

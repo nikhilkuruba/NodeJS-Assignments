@@ -7,9 +7,9 @@ const postRouter=require('./routers/posts');
 
 
 mongoose.connect('mongodb://localhost:27017/restapi');
-//const { decode } = require('jsonwebtoken');
+const { decode } = require('jsonwebtoken');
 
-var webToken = require('jsonwebtoken');
+var jwt = require('jsonwebtoken');
 var SECRET='RESTAPI';
 
 app.use(bodyParser());
@@ -24,7 +24,7 @@ app.use('/posts',(req,res,next)=>{
         })
     }
     
-webToken.verify(token, SECRET, async function(err, decoded) {
+jwt.verify(token, SECRET, async function(err, decoded) {
     console.log(decoded)
     console.log(token)
 

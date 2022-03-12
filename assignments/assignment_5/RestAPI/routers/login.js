@@ -3,7 +3,7 @@ const router=express.Router();
 const User=require('../model/user.js');
 const bcrypt=require('bcrypt');
 const { body, param,validationResult } = require('express-validator');
-var webToken = require('jsonwebtoken');
+var jwt = require('jsonwebToken');
 var SECRETE='RESTAPI'
 router.post('/register%0A',body("email"),body("name"),async (req,res)=>{
     console.log(req.body)
@@ -48,7 +48,7 @@ router.post('/login%0A',body("email"),body("password"),async (req,res)=>{
            
            if(result){
             
-            var token=webToken.sign({
+            var token=jwt.sign({
                 exp: Math.floor(Date.now()/1000) + (60*60),
                 data: user._id
                 },
